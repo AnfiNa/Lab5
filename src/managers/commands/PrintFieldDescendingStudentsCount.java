@@ -1,6 +1,5 @@
 package managers.commands;
 
-import exceptions.BuildObjectException;
 import managers.Command;
 import managerscollection.CollectionManager;
 import managerscollection.StudyGroupManager;
@@ -70,8 +69,5 @@ public class PrintFieldDescendingStudentsCount extends Command {
         }
     }
 
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-    }
 
 }

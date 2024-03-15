@@ -1,6 +1,5 @@
 package managers.commands;
 
-import exceptions.BuildObjectException;
 import managers.Command;
 import managerscollection.CollectionManager;
 import managerscollection.StudyGroupManager;
@@ -10,7 +9,6 @@ import java.util.TreeSet;
 
 /**
  * Command to clear the collection.
- * @author boris
  */
 public class Clear extends Command {
 
@@ -59,7 +57,4 @@ public class Clear extends Command {
         }
     }
 
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-    }
 }

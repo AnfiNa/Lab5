@@ -64,8 +64,5 @@ public class Info extends Command {
         }
     }
 
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-    }
 
 }

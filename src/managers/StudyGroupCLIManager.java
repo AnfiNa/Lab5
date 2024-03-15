@@ -12,22 +12,79 @@ import java.util.Scanner;
 public class StudyGroupCLIManager implements managerscollection.ModeManager<objects.StudyGroup> {
     @Override
     public StudyGroup buildObject() throws BuildObjectException {
-        try{
+        try {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter name(not null!)(type: String) : ");
-            String name = scanner.nextLine();
-            System.out.println("Enter coordinates(not null!) (type: float, float) : ");
-            Coordinates coord = new Coordinates(scanner.nextFloat(), scanner.nextFloat());
-            System.out.println("Enter students count(not null!) (type: int > 0) : ");
-            int studentsCount = scanner.nextInt();
-            System.out.println("Enter transferred students (not null!) (type: long > 0) : ");
-            long transferredStudents = scanner.nextLong();
-            System.out.println("Enter students count(not null!) (type: int > 0) : ");
-            int averageMark = scanner.nextInt();
+            String name = "";
+            while (name.length() == 0) {
+                System.out.println("Enter name(not null!)(type: String) : ");
+                name = scanner.nextLine();
+            }
+            float coordX;
+            while (true) {
+                System.out.println("Enter coordinates_x(not null!) (type: float) : ");
+                String x = scanner.nextLine();
+                try {
+                    coordX = Float.parseFloat(x);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("It's not float");
+                }
+            }
+            float coordY;
+            while (true) {
+                System.out.println("Enter coordinates_y(not null!) (type: float) : ");
+                String y = scanner.nextLine();
+                try {
+                    coordY = Float.parseFloat(y);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("It's not float");
+                }
+            }
+            Coordinates coord = new Coordinates(coordX, coordY);
+            int studentsCount;
+            while (true) {
+                System.out.println("Enter students count(not null!) (type: int > 0) : ");
+                String y = scanner.nextLine();
+                try {
+                    studentsCount = Integer.parseInt(y);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("It's not int");
+                }
+            }
+            long transferredStudents;
+            while (true) {
+                System.out.println("Enter transferred students (not null!) (type: long > 0) : ");
+                String y = scanner.nextLine();
+                try {
+                    transferredStudents = Long.parseLong(y);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("It's not long");
+                }
+            }
+            int averageMark;
+            while (true) {
+                System.out.println("Enter average mark(not null!) (type: int > 0) : ");
+                String y = scanner.nextLine();
+                try {
+                    averageMark = Integer.parseInt(y);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("It's not int");
+                }
+            }
+            // исправить неправильный ввод (добавить while)
             System.out.println("Enter form of education (DISTANCE_EDUCATION, FULL_TIME_EDUCATION, EVENING_CLASSES) : ");
             String formOfEducation = scanner.nextLine();
             System.out.println("Enter groupAdmin's name(not null!) (type: String) : ");
-            String adminName = scanner.nextLine();
+            String adminName = "";
+            while (name.length() == 0) {
+                System.out.println("Enter groupAdmin's name(not null!) (type: String) : ");
+                name = scanner.nextLine();
+            }
+            // исправить неправильный ввод (добавить while)
             System.out.println("Enter nationality(not null!) (USA, GERMANY, SPAIN, CHINA, JAPAN) : ");
             String adminNationality = scanner.nextLine();
             System.out.println("Enter birthday (type: date) : ");
@@ -37,22 +94,22 @@ public class StudyGroupCLIManager implements managerscollection.ModeManager<obje
             System.out.println("Enter hair color (RED, BLACK, ORANGE, WHITE) : ");
             String hair = scanner.nextLine();
             Date adminBirthday;
-            if (birthday == ""){
+            if (birthday != "") {
                 DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
                 adminBirthday = df.parse(scanner.nextLine());
-            } else{
+            } else {
                 adminBirthday = null;
             }
             EyeColor eyeColor;
-            if (eye == ""){
+            if (eye != "") {
                 eyeColor = EyeColor.valueOf(eye);
-            } else{
+            } else {
                 eyeColor = null;
             }
             HairColor hairColor;
-            if (hair == ""){
+            if (hair != "") {
                 hairColor = HairColor.valueOf(hair);
-            } else{
+            } else {
                 hairColor = null;
             }
             Person admin = new Person(name, eyeColor, hairColor, Country.valueOf(adminNationality), adminBirthday);

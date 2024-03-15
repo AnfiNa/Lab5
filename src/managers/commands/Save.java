@@ -1,6 +1,5 @@
 package managers.commands;
 
-import exceptions.BuildObjectException;
 import managers.Command;
 import managerscollection.StudyGroupManager;
 import managerscollection.WriteJSONManager;
@@ -58,7 +57,5 @@ public class Save extends Command {
         fileName = name;
     }
 
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-    }
+
 }

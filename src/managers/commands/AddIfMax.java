@@ -10,7 +10,7 @@ import objects.StudyGroup;
 import java.util.TreeSet;
 
 /**
- * Command to add a new studyGroup to the collection if it has a bigger than the biggest city in the collection.
+ * Command to add a new studyGroup to the collection if it has a bigger than the biggest study group in the collection.
  */
 public class AddIfMax extends Command {
     ModeManager<StudyGroup> handler;
@@ -80,7 +80,4 @@ public class AddIfMax extends Command {
         }
     }
 
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-    }
 }

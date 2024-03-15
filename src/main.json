@@ -40,26 +40,6 @@
     }
   },
   {
-    "id": 4,
-    "name": "fds",
-    "coordinates": {
-      "x": 1.0,
-      "y": 2.0
-    },
-    "creationDate": "2024-03-01T13:39:47.8320384+03:00[Europe/Moscow]",
-    "studentsCount": 100,
-    "transferredStudents": 20,
-    "averageMark": 20,
-    "formOfEducation": "DISTANCE_EDUCATION",
-    "groupAdmin": {
-      "name": "jh",
-      "birthday": null,
-      "eyeColor": null,
-      "hairColor": null,
-      "nationality": "USA"
-    }
-  },
-  {
     "id": 5,
     "name": "fds",
     "coordinates": {

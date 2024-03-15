@@ -70,8 +70,5 @@ public class Add extends Command {
             System.out.println("StudyGroup Object successfully added!");
         }
     }
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-    }
 
 }

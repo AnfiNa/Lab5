@@ -13,7 +13,7 @@ import java.util.TreeSet;
 
 /**
  * This class represents the RemoveLower command in the program. When executed, it removes all
- * elements from the collection that have a students count lower than the specified city.
+ * elements from the collection that have a students count lower than the specified study group.
  */
 public class RemoveLower extends Command {
 
@@ -40,11 +40,10 @@ public class RemoveLower extends Command {
 
     @Override
     public String getDescription() {
-        return "Removes all elements from the collection that have a students count lower than the specified city.";}
+        return "Removes all elements from the collection that have a students count lower than the specified study group.";}
 
     /**
-     * Executes the RemoveLower command. Removes all elements from the collection that have a
-     * population lower than the specified city.
+     * Removes all elements from the collection that have a students count lower than the specified study group.
      */
     @Override
     public void execute() throws BuildObjectException {
@@ -90,8 +89,6 @@ public class RemoveLower extends Command {
         }
     }
 
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-    }
+
 
 }

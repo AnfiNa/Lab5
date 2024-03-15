@@ -1,0 +1,3 @@
+remove_by_id 4
+save
+execute_script F:\Lab5\src\script.txt

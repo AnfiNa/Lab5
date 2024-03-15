@@ -21,4 +21,8 @@ public abstract class Command implements CommandInterface {
     public void setArgument(Object argument) {
         this.argument = (String) argument;
     }
+    @Override
+    public void execute(Object arg) throws BuildObjectException {
+        System.out.println("This command has no arguments!");
+    }
 }

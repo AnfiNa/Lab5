@@ -10,7 +10,7 @@ import objects.StudyGroup;
 import java.util.TreeSet;
 
 /**
- * Command to add a new studyGroup to the collection if it has a smaller  than the smallest city in the collection.
+ * Command to add a new studyGroup to the collection if it has a smaller  than the smallest study group in the collection.
  */
 public class AddIfMin extends Command {
     ModeManager<StudyGroup> handler;
@@ -82,7 +82,4 @@ public class AddIfMin extends Command {
         }
     }
 
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-    }
 }

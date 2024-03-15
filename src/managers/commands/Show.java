@@ -1,6 +1,5 @@
 package managers.commands;
 
-import exceptions.BuildObjectException;
 import managers.Command;
 import managerscollection.CollectionManager;
 import managerscollection.StudyGroupManager;
@@ -9,7 +8,7 @@ import objects.StudyGroup;
 import java.util.TreeSet;
 
 /**
- * Command to show all cities in the collection.
+ * Command to show all study groups in the collection.
  */
 public class Show extends Command {
 
@@ -28,7 +27,7 @@ public class Show extends Command {
     }
 
     /**
-     * Executes the Show command by printing all the cities in the collection.
+     * Executes the Show command by printing all the study groups in the collection.
      * The method calls the checkArgument method to validate the input argument before execution.
      */
     @Override
@@ -62,7 +61,4 @@ public class Show extends Command {
         }
     }
 
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-    }
 }

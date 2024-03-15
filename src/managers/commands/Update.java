@@ -11,7 +11,7 @@ import objects.StudyGroup;
 import java.util.TreeSet;
 
 /**
- * Command to update a city by its id number.
+ * Command to update a study group by its id number.
  */
 public class Update extends Command {
 
@@ -45,7 +45,7 @@ public class Update extends Command {
     }
 
     /**
-     * Executes the UpdateId command by updating a city with a specified id number in the collection.
+     * Executes the UpdateId command by updating a study group with a specified id number in the collection.
      * The method calls the checkArgument method to validate the input argument before execution.
      */
     @Override
@@ -96,7 +96,6 @@ public class Update extends Command {
     }
     @Override
     public void execute(Object arg) throws BuildObjectException {
-        System.out.println(arg);
         this.setArgument(arg);
         this.execute();
     }
