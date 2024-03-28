@@ -2,6 +2,7 @@ package managers.commands;
 import exceptions.BuildObjectException;
 import managers.Command;
 import managers.CommandManager;
+import managers.Receiver;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -31,10 +32,10 @@ public class Help extends Command {
      * Overrides execute() method of the Command class.
      */
     @Override
-    public void execute() {
+    public void execute(Receiver receiver) {
         CommandManager manager = new CommandManager();
 
-        if (this.getArgument() == null)
+        if (receiver.getArg() == null)
             manager.getCommandMap().forEach((name, command) -> System.out.println(name + " : " + command.getDescription()));
     }
 

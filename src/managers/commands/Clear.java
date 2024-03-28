@@ -1,6 +1,7 @@
 package managers.commands;
 
 import managers.Command;
+import managers.Receiver;
 import managerscollection.CollectionManager;
 import managerscollection.StudyGroupManager;
 import objects.StudyGroup;
@@ -30,8 +31,8 @@ public class Clear extends Command {
      * Prints a message indicating that the command does not take arguments otherwise.
      */
     @Override
-    public void execute() {
-        if (checkArgument(getArgument())) {
+    public void execute(Receiver receiver) {
+        if (checkArgument(receiver.getArg())) {
             CollectionManager<TreeSet<StudyGroup>, StudyGroup> manager = StudyGroupManager.getStudyGroupManager();
             if (manager.getCollection() == null) {
                 System.out.println("There is nothing to clear)");

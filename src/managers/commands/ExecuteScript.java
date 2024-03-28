@@ -4,15 +4,13 @@ import exceptions.BuildObjectException;
 import managers.Command;
 import managers.CommandExecutor;
 import managers.CommandMode;
+import managers.Receiver;
 import managerscollection.CollectionManager;
 import managerscollection.StudyGroupManager;
 import objects.StudyGroup;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.InvalidPathException;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
+import java.nio.file.*;
 
 import java.util.ArrayDeque;
 import java.util.TreeSet;
@@ -48,7 +46,9 @@ public class ExecuteScript extends Command {
      The method also checks for recursion by ensuring that a file path is not executed twice.
      */
     @Override
-    public void execute() throws IllegalArgumentException {
+    public void execute(Receiver receiver) throws IllegalArgumentException {
+        String fileName = FileSystems.getDefault().getPath(receiver.getArg()).normalize().toAbsolutePath().toString();
+        System.out.println(fileName);
         try {
             CollectionManager<TreeSet<StudyGroup>, StudyGroup> manager = StudyGroupManager.getStudyGroupManager();
             if (manager.getCollection() == null) {
@@ -56,13 +56,13 @@ public class ExecuteScript extends Command {
                 return;
             }
 
-            if (checkRecursion(Path.of((String) this.getArgument()), new ArrayDeque<>())) {
+            if (checkRecursion(Path.of(fileName), new ArrayDeque<>())) {
                 System.out.println("При анализе скрипта обнаружена рекурсия. Устраните ее перед исполнением.");
                 return;
             }
             System.out.println("Executing script");
             CommandExecutor executor = new CommandExecutor();
-            executor.startExecuting(new FileInputStream((String) this.getArgument()), CommandMode.NonUserMode);
+            executor.startExecuting(new FileInputStream(fileName), CommandMode.NonUserMode);
         } catch (InvalidPathException e) {
             System.out.println("Provided argument path isn't legal. Try again.");
             throw new IllegalArgumentException(e);
@@ -109,11 +109,6 @@ public class ExecuteScript extends Command {
         }
         return false;
 
-    }
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-        this.setArgument(arg);
-        this.execute();
     }
 
 }

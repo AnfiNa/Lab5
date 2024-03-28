@@ -83,13 +83,16 @@ public class CommandManager {
     /**
      * Universe method for command executing.
      */
-    public void executeCommand(String[] args){
+    public void executeCommand(String line){
+        String[] args = line.split(" ");
+        Receiver receiver;
         try {
-            if (args.length > 1){
-                Optional.ofNullable(commandMap.get(args[0])).orElseThrow(() -> new UnknownCommandException("\nКоманды " + args[0] + " не обнаружено :( ")).execute(args[1]);
-            }
+            if (args.length == 2) {
+                receiver = new Receiver((String) args[1]);}
             else {
-            Optional.ofNullable(commandMap.get(args[0])).orElseThrow(() -> new UnknownCommandException("\nКоманды " + args[0] + " не обнаружено :( ")).execute();}
+                receiver = new Receiver("");
+            }
+            Optional.ofNullable(commandMap.get(args[0])).orElseThrow(() -> new UnknownCommandException("\nКоманды " + args[0] + " не обнаружено :( ")).execute(receiver);
         } catch (IllegalArgumentException | NullPointerException | NoSuchElementException e) {
             System.err.println("Выполнение команды пропущено из-за неправильных предоставленных аргументов! (" + e.getMessage() + ")");
             throw new CommandInterruptedException(e);

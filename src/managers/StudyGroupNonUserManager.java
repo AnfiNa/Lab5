@@ -48,7 +48,7 @@ public class StudyGroupNonUserManager implements ModeManager<StudyGroup> {
             } else{
                 hairColor = null;
             }
-            Person admin = new Person(name, eyeColor, hairColor, Country.valueOf(adminNationality), adminBirthday);
+            Person admin = new Person(adminName, eyeColor, hairColor, Country.valueOf(adminNationality), adminBirthday);
             return new StudyGroup(name, coord, studentsCount, transferredStudents, averageMark, FormOfEducation.valueOf(formOfEducation), admin);
         } catch (ParseException e) {
             throw new BuildObjectException("The input data is incorrect, the object cannot be created");

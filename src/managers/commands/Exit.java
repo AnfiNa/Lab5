@@ -2,6 +2,7 @@ package managers.commands;
 
 import exceptions.BuildObjectException;
 import managers.Command;
+import managers.Receiver;
 
 /**
  * The Exit class is a command that terminates the program.
@@ -29,8 +30,8 @@ public class Exit extends Command {
      * Overrides execute() method of the Command class.
      */
     @Override
-    public void execute() {
-        if (checkArgument(getArgument())) {
+    public void execute(Receiver receiver) {
+        if (checkArgument(receiver.getArg())) {
             System.out.println("Closing program...");
             System.exit(0);
         }

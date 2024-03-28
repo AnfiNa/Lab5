@@ -23,7 +23,7 @@ public class CommandExecutor {
             String line = cmdScanner.nextLine().trim();
             if (line.isEmpty()) continue;
             try {
-                commandManager.executeCommand(line.split(" "));
+                commandManager.executeCommand(line);
                 System.out.println();
             } catch (CommandInterruptedException | NoSuchElementException ex) {
                 if (mode.equals(CommandMode.CLI_UserMode))

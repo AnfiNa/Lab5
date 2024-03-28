@@ -1,6 +1,7 @@
 package managers.commands;
 
 import managers.Command;
+import managers.Receiver;
 import managerscollection.StudyGroupManager;
 import managerscollection.WriteJSONManager;
 
@@ -29,8 +30,8 @@ public class Save extends Command {
      * Executes the Save command. Writes the current collection to the file.
      */
     @Override
-    public void execute() {
-        if (checkArgument(getArgument())) {
+    public void execute(Receiver receiver) {
+        if (checkArgument(receiver.getArg())) {
             StudyGroupManager collectionManager = StudyGroupManager.getStudyGroupManager();
             WriteJSONManager.writeCollection(fileName, collectionManager.getCollection());
         }

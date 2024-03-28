@@ -2,6 +2,7 @@ package managers.commands;
 
 import exceptions.BuildObjectException;
 import managers.Command;
+import managers.Receiver;
 import managerscollection.CollectionManager;
 import managerscollection.IdManager;
 import managerscollection.StudyGroupManager;
@@ -37,14 +38,14 @@ public class CountLessThanTransferredStudents extends Command {
      * Checks the argument before execution.
      */
     @Override
-    public void execute() {
-        if (checkArgument(this.getArgument())) {
+    public void execute(Receiver receiver) {
+        if (checkArgument(receiver.getArg())) {
             CollectionManager<TreeSet<StudyGroup>, StudyGroup> manager = StudyGroupManager.getStudyGroupManager();
             if (manager.getCollection() == null) {
                 System.out.println("This command doesn't work right now");
                 return;
             }
-            long commandArgument = Long.parseLong((String) this.argument);
+            long commandArgument = Long.parseLong((String) receiver.getArg());
             long result = 0;
             for (StudyGroup studyGroup: manager.getCollection().descendingSet()){
                 if (studyGroup.getTransferredStudents() < commandArgument){
@@ -76,12 +77,6 @@ public class CountLessThanTransferredStudents extends Command {
                 return false;
             }
         }
-    }
-
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-        this.setArgument(arg);
-        this.execute();
     }
 
 }

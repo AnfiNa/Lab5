@@ -2,6 +2,7 @@ package managers.commands;
 
 import exceptions.BuildObjectException;
 import managers.Command;
+import managers.Receiver;
 import managerscollection.CollectionManager;
 import managerscollection.StudyGroupManager;
 import objects.StudyGroup;
@@ -35,8 +36,8 @@ public class Info extends Command {
      * Checks the argument before execution.
      */
     @Override
-    public void execute() {
-        if (checkArgument(getArgument())) {
+    public void execute(Receiver receiver) {
+        if (checkArgument(receiver.getArg())) {
             CollectionManager<TreeSet<StudyGroup>, StudyGroup> manager = StudyGroupManager.getStudyGroupManager();           if (manager.getCollection() == null)
                 System.out.println("There's nothing to show info about.");
             else {

@@ -15,7 +15,7 @@ public class Person {
     private Country nationality; //Поле не может быть null
 
     public Person(String name, EyeColor eyeColor, HairColor hairColor, Country nationality, Date birthday) throws BuildObjectException {
-        if (name == null || birthday == null) {
+        if (name == null || nationality == null) {
             throw new NullPointerException();
         } else if (name.length() == 0) {
             throw new BuildObjectException("The input data is incorrect, the object cannot be created");
@@ -28,7 +28,7 @@ public class Person {
         }
     }
     public Person(String name, Country nationality) throws BuildObjectException {
-        if (name == null || birthday == null) {
+        if (name == null || nationality == null) {
             throw new NullPointerException();
         } else if (name.length() == 0) {
             throw new BuildObjectException("The input data is incorrect, the object cannot be created");

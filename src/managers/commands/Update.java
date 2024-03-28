@@ -2,6 +2,7 @@ package managers.commands;
 
 import exceptions.BuildObjectException;
 import managers.Command;
+import managers.Receiver;
 import managerscollection.CollectionManager;
 import managerscollection.IdManager;
 import managerscollection.ModeManager;
@@ -34,6 +35,8 @@ public class Update extends Command {
         this.handler = handler;
     }
 
+
+
     @Override
     public String getName() {
         return "update id {element}";
@@ -49,28 +52,27 @@ public class Update extends Command {
      * The method calls the checkArgument method to validate the input argument before execution.
      */
     @Override
-    public void execute() throws BuildObjectException {
-        if (checkArgument(this.getArgument())) {
+    public void execute(Receiver receiver) throws BuildObjectException {
+        if (checkArgument(receiver.getArg())) {
             CollectionManager<TreeSet<StudyGroup>, StudyGroup> manager = StudyGroupManager.getStudyGroupManager();
             if (manager.getCollection() == null) {
                 System.out.println("This command doesn't work right now");
                 return;
             }
 
-            StudyGroup finalGroup = IdManager.checkGroupById((int) this.getArgument());
+            StudyGroup finalGroup = IdManager.checkGroupById(Integer.parseInt(receiver.getArg()));
             if (finalGroup == null) {
                 System.out.println("Элемента с таким id-номером нет в текущей коллекции!");
                 return;
             } else manager.getCollection().remove(finalGroup);
             StudyGroup newGroup = handler.buildObject();
-            newGroup.setId((int) this.getArgument());
+            newGroup.setId(Integer.parseInt(receiver.getArg()));
             manager.addElementToCollection(newGroup);
             System.out.println("StudyGroup Object successfully added!");
 
-            System.out.println("Updated StudyGroup object with id : " + this.getArgument());
+            System.out.println("Updated StudyGroup object with id : " + receiver.getArg());
         }
     }
-
 
     /**
      * Checks if the input argument is valid for the UpdateId command.
@@ -81,23 +83,18 @@ public class Update extends Command {
     @Override
     public boolean checkArgument(Object inputArgument) {
         if (inputArgument == null) {
-            System.out.println("Команда update_id имеет аргумент типа данных int!");
+            System.out.println("Команда update имеет аргумент типа данных int!");
             return false;
         } else if (inputArgument instanceof String) {
             try {
                 Integer.parseInt((String) inputArgument);
                 return true;
             } catch (NumberFormatException e) {
-                System.out.println("Update_id has 1 argument of type int!");
+                System.out.println("Update has 1 argument of type int!");
                 return false;
             }
         }
         return false;
-    }
-    @Override
-    public void execute(Object arg) throws BuildObjectException {
-        this.setArgument(arg);
-        this.execute();
     }
 
 }

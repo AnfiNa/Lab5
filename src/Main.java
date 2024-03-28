@@ -5,18 +5,31 @@ import managers.commands.Save;
 import managerscollection.CollectionManager;
 import managerscollection.ReadJSONManager;
 import managerscollection.StudyGroupManager;
-import managerscollection.WriteJSONManager;
 import objects.*;
 
+import java.nio.file.FileSystems;
+import java.util.Objects;
 import java.util.TreeSet;
 
 public class Main {
     private static final String ENV_KEY = "F:\\Lab5\\src\\main.json";;
 
     public static void main(String[] args) {
+        System.setErr(System.out);
+
+        String fileName = null;
         try {
-            ReadJSONManager.readFromFile(ENV_KEY);
-            Save.setFileName(ENV_KEY);
+            fileName = Objects.requireNonNull(System.getenv("collectionFileName"));
+        } catch (Throwable e){
+            System.err.println("An error occurred in setting the path to the file. The default file path will be used ~/main.json");
+            fileName = "main.json";
+        }
+
+        fileName = FileSystems.getDefault().getPath(fileName).normalize().toAbsolutePath().toString();
+        System.out.println(fileName);
+        try {
+            ReadJSONManager.readFromFile(fileName);
+            Save.setFileName(fileName);
             CollectionManager<TreeSet<StudyGroup>, StudyGroup> manager = StudyGroupManager.getStudyGroupManager();
 
             // commands

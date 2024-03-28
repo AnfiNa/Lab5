@@ -3,6 +3,7 @@ package managers.commands;
 import exceptions.BuildObjectException;
 import managers.Command;
 
+import managers.Receiver;
 import managerscollection.CollectionManager;
 import managerscollection.ModeManager;
 import managerscollection.StudyGroupManager;
@@ -46,8 +47,8 @@ public class RemoveLower extends Command {
      * Removes all elements from the collection that have a students count lower than the specified study group.
      */
     @Override
-    public void execute() throws BuildObjectException {
-        if (checkArgument(this.getArgument())) {
+    public void execute(Receiver receiver) throws BuildObjectException {
+        if (checkArgument(receiver.getArg())) {
             CollectionManager<TreeSet<StudyGroup>, StudyGroup> manager = StudyGroupManager.getStudyGroupManager();
             if (manager.getCollection() == null) {
                 System.out.println("This command doesn't work right now");

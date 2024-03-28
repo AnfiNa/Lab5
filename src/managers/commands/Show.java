@@ -1,6 +1,7 @@
 package managers.commands;
 
 import managers.Command;
+import managers.Receiver;
 import managerscollection.CollectionManager;
 import managerscollection.StudyGroupManager;
 import objects.StudyGroup;
@@ -31,10 +32,9 @@ public class Show extends Command {
      * The method calls the checkArgument method to validate the input argument before execution.
      */
     @Override
-    public void execute() {
-        if (checkArgument(getArgument())) {
+    public void execute(Receiver receiver) {
+        if (checkArgument(receiver.getArg())) {
             CollectionManager<TreeSet<StudyGroup>, StudyGroup> manager = StudyGroupManager.getStudyGroupManager();
-
             if (manager.getCollection() == null)
                 System.out.println("There's nothing to show.");
             else {
