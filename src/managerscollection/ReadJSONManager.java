@@ -2,7 +2,6 @@ package managerscollection;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import managers.commands.RemoveById;
 import objects.StudyGroup;
 
 import java.io.*;
@@ -16,7 +15,7 @@ public class ReadJSONManager {
             .registerTypeAdapter(ZonedDateTime.class, new DateAdapter())
             .create();
 
-    public static void readFromFile(String fileName) {
+    public static StringBuilder readTextFromFile(String fileName) {
         StringBuilder result = new StringBuilder();
         try (FileReader fr = new FileReader(fileName)) {
             int i = fr.read();
@@ -25,10 +24,15 @@ public class ReadJSONManager {
                 i = fr.read();
             }
         } catch (FileNotFoundException e) {
+            System.out.println("File not found! Try again.");
             throw new RuntimeException();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return result;
+    }
+    public static void readFromFile(String fileName){
+        StringBuilder result = readTextFromFile(fileName);
         var collectionType = new TypeToken<TreeSet<StudyGroup>>() {
         }.getType();
         TreeSet<StudyGroup> collection = gson.fromJson(result.toString(), collectionType);
